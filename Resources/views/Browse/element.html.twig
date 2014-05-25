@@ -1,0 +1,21 @@
+{% twig_js name="filemanager_browser_element" %}
+<div class="efm-element efm-element-{{ element.type }}">
+    <div class="efm-element-visual" data-role="select">
+        <img src="{{ element.visual }}">
+    </div>
+    <div class="efm-element-controls">
+        <div class="efm-element-buttons">
+            {% if element.type != 'back' -%}
+            <a href="#" data-role="remove" class="glyphicon glyphicon-trash"></a>
+            <a href="#" data-role="rename" class="glyphicon glyphicon-pencil"></a>
+            {% if element.type != 'directory' -%}
+            <a href="#" data-role="download" class="glyphicon glyphicon-download"></a>
+            <a href="#" data-role="show" class="glyphicon glyphicon-eye-open"></a>
+            {%- endif %}
+            {%- endif %}
+        </div>
+    </div>
+    {% if element.type != 'back' -%}
+    <div class="efm-element-name" data-role="select">{{ element.filename }}</div>
+    {%- endif %}
+</div>

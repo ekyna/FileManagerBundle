@@ -1,0 +1,15 @@
+Ekyna\Bundle\FileManagerBundle\Browser\Element:
+    exclusion_policy: ALL
+    properties:
+        type:
+            expose: true
+        filename:
+            expose: true
+        size:
+            expose: true
+        systemPath:
+            expose: true
+        webPath:
+            expose: true
+        visual:
+            expose: true

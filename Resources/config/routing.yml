@@ -1,0 +1,72 @@
+ekyna_filemanager_test:
+    path: /test
+    defaults: { _controller: "EkynaFileManagerBundle:Browse:test" }
+    requirements:
+        _method: GET
+
+ekyna_filemanager_index:
+    path: /{system}
+    defaults: { _controller: "EkynaFileManagerBundle:Browse:index" }
+    requirements:
+        _method: GET|POST
+        system: "[a-z-]+"
+    options:
+        expose: true
+
+ekyna_filemanager_mkdir:
+    path: /{system}/mkdir
+    defaults: { _controller: "EkynaFileManagerBundle:Browse:mkdir" }
+    requirements:
+        _method: GET|POST
+        system: "[a-z-]+"
+    options:
+        expose: true
+
+ekyna_filemanager_upload:
+    path: /{system}/upload
+    defaults: { _controller: "EkynaFileManagerBundle:Browse:upload" }
+    requirements:
+        _method: GET|POST
+        system: "[a-z-]+"
+    options:
+        expose: true
+
+ekyna_filemanager_show:
+    path: /{system}/show/{file}
+    defaults: { _controller: "EkynaFileManagerBundle:Browse:show" }
+    requirements:
+        _method: GET
+        system: "[a-z-]+"
+        file: "[0-9a-z-_\(\)\.]+"
+    options:
+        expose: true
+
+ekyna_filemanager_download:
+    path: /{system}/download/{file}
+    defaults: { _controller: "EkynaFileManagerBundle:Browse:download" }
+    requirements:
+        _method: GET
+        system: "[a-z-]+"
+        file: "[0-9a-z-_\(\)\.]+"
+    options:
+        expose: true
+
+ekyna_filemanager_rename:
+    path: /{system}/rename/{file}
+    defaults: { _controller: "EkynaFileManagerBundle:Browse:rename" }
+    requirements:
+        _method: GET|POST
+        system: "[a-z-]+"
+        file: "[0-9a-z-_\(\)\.]+"
+    options:
+        expose: true
+
+ekyna_filemanager_remove:
+    path: /{system}/remove/{file}
+    defaults: { _controller: "EkynaFileManagerBundle:Browse:remove" }
+    requirements:
+        _method: GET|POST
+        system: "[a-z-]+"
+        file: "[0-9a-z-_\(\)\.]+"
+    options:
+        expose: true

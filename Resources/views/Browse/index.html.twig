@@ -1,0 +1,170 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>File Manager</title>
+	{% stylesheets output='css/filemanager.css' filter='cssrewrite, ?yui_css'
+		'css/bootstrap.css'
+		'@EkynaFileManagerBundle/Resources/public/css/browser.css'
+	%}
+	<link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+	{%- endstylesheets %}
+</head>
+<body>
+	<div class="efm-browser" data-system="{{ browser.system.name }}" data-config='{{ browser.configuration|serialize('json') }}'>
+	    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	        <div class="container-fluid">
+                <div class="navbar-header">
+	                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+	                        class="icon-bar"></span>
+	                </button>
+	            </div>
+	            <div class="navbar-collapse collapse efm-controls">
+
+                    {# --- NEW BUTTONS --- #}
+	                <div class="efm-controls-group">
+	                    <div class="btn-group">
+	                        <button type="button" class="btn btn-sm btn-default" data-role="upload">
+	                            <span class="glyphicon glyphicon-plus"></span>
+	                            <span class="glyphicon glyphicon-file"></span>
+	                        </button>
+	                        <button type="button" class="btn btn-sm btn-default" data-role="mkdir">
+	                            <span class="glyphicon glyphicon-plus"></span>
+	                            <span class="glyphicon glyphicon-folder-open"></span>
+	                        </button>
+	                    </div>
+	                </div>
+
+                    {# --- TEXT SEARCH --- #}
+	                <div class="efm-controls-group">
+	                    <div class="input-group" style="max-width: 200px;">
+	                        <input type="text" name="search" class="form-control input-sm" data-role="search" placeholder="Rechercher">
+	                        <span class="input-group-btn">
+	                            <button class="btn btn-sm btn-default" type="button" data-role="clear-search">
+	                                <span class="glyphicon glyphicon-remove"></span>
+	                            </button>
+	                        </span>
+	                    </div>
+	                </div>
+
+                    {# --- DISPLAY MODE --- #}
+	                {#<div class="efm-controls-group">
+	                    <div class="btn-group" data-toggle="buttons">
+	                        <label class="btn btn-sm btn-default">
+	                           <input type="radio" name="options" id="option1">
+	                           <span class="glyphicon glyphicon-th-large"></span>
+	                        </label>
+	                        <label class="btn btn-sm btn-default">
+	                           <input type="radio" name="options" id="option1">
+	                           <span class="glyphicon glyphicon-align-justify"></span>
+	                        </label>
+	                    </div>
+	                </div>#}
+
+                    {# --- TYPE FILTER --- #}
+	                <div class="efm-controls-group">
+	                    <div class="btn-group" data-toggle="buttons">
+	                        <label class="btn btn-sm btn-default" data-role="filter">
+	                            <input type="checkbox" name="filters[]" value="file">
+	                            <span class="glyphicon glyphicon-file"></span>
+	                        </label>
+	                        <label class="btn btn-sm btn-default" data-role="filter">
+	                            <input type="checkbox" name="filters[]" value="image">
+	                            <span class="glyphicon glyphicon-picture"></span>
+	                        </label>
+	                        <label class="btn btn-sm btn-default" data-role="filter">
+	                            <input type="checkbox" name="filters[]" value="video">
+	                            <span class="glyphicon glyphicon-film"></span>
+	                        </label>
+	                        <label class="btn btn-sm btn-default" data-role="filter">
+	                            <input type="checkbox" name="filters[]" value="audio">
+	                            <span class="glyphicon glyphicon-music"></span>
+	                        </label>
+	                        <label class="btn btn-sm btn-default" data-role="filter">
+	                            <input type="checkbox" name="filters[]" value="archive">
+	                            <span class="glyphicon glyphicon-compressed"></span>
+	                        </label>
+	                    </div>
+                    </div>
+
+                    {# --- SORTING --- #}
+                    <div class="efm-controls-group">
+	                    <div class="btn-group" data-toggle="buttons">
+	                        <label class="btn btn-sm btn-default active" data-role="sort">
+	                           <input type="radio" id="sort-by-filename" name="sort" value="filename" data-dir="asc">
+	                           <span class="glyphicon glyphicon-sort-by-alphabet"></span>
+	                        </label>
+	                        <label class="btn btn-sm btn-default" data-role="sort">
+	                           <input type="radio" id="sort-by-size" name="sort" value="size" data-dir="asc">
+	                           <span class="glyphicon glyphicon-sort-by-attributes"></span>
+	                        </label>
+	                    </div>
+	                </div>
+
+                    {# --- REFRESH --- #}
+                    <div class="efm-controls-group">
+                        <button class="btn btn-sm btn-default" type="button" data-role="refresh">
+	                       <span class="glyphicon glyphicon-refresh"></span>
+	                    </button>
+	                </div>
+
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="container-fluid">
+
+            {# --- BREADCRUMB --- #}
+	        <div class="row">
+	            <div class="col-sm-12">
+	                <ol class="breadcrumb"></ol>
+	            </div>
+	        </div>
+
+            {# --- DIALOG --- #}
+	        <div class="row">
+	            <div class="col-sm-12 efm-dialog"></div>
+            </div>
+
+            {# --- ELEMENTS --- #}
+	        <div class="row">
+	            <div class="col-sm-12 efm-elements">
+	            {#% for element in browser.elements %}
+		        {% include 'EkynaFileManagerBundle:Browse:element.html.twig' %}
+		        {% endfor %#}
+	            </div>
+	        </div>
+
+	    </div>
+	</div>
+
+
+    {% javascripts output='js/filemanager.js' filter='?closure'
+	    'js/jquery.js'
+	    'js/bootstrap.js'
+	    'bundles/fosjsrouting/js/router.js'
+	    '%kernel.root_dir%/../vendor/jms/twig-js/twig.js'
+        '%kernel.root_dir%/../vendor/malsup/form/jquery.form.js'
+	    '@EkynaFileManagerBundle/Resources/public/js/string.prototypes.js'
+	    '@EkynaFileManagerBundle/Resources/public/js/forms.js'
+	    '@EkynaFileManagerBundle/Resources/public/js/browser.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {% javascripts output='js/element.html.twig.js' filter="twig_js" '@EkynaFileManagerBundle/Resources/views/Browse/element.html.twig' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% javascripts output='js/flash.html.twig.js' filter="twig_js" '@EkynaFileManagerBundle/Resources/views/Browse/flash.html.twig' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+</body>
+</html>
+{% endspaceless %}

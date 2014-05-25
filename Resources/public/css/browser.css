@@ -1,0 +1,179 @@
+body {
+    padding-top: 65px;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    min-height: 46px;
+}
+
+.efm-controls-group {
+    float: left;
+    margin: 8px 15px 8px 0;
+}
+
+.efm-controls-group:last-child {
+    margin-right: 0;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+/* --- BREADCRUMB --- */
+.breadcrumb {
+    margin-bottom: 15px;
+}
+
+/* --- DIALOG --- */
+.efm-dialog {
+    
+}
+
+.efm-dialog form {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.efm-dialog form .file-widget {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+
+.efm-dialog form .file-widget button {
+    margin-right: 0 !important;
+}
+
+@media ( max-width : 767px) {
+    .efm-dialog form button {
+        margin-right: 15px;
+    }
+}
+
+@media ( min-width : 768px) {
+    .efm-dialog form label {
+        padding: 0 15px;
+    }
+    .efm-dialog form button {
+        margin-left: 15px;
+    }
+    .efm-dialog form .file-widget {
+        max-width: 150px;
+    }
+}
+
+/* --- FORMS --- */
+.file-widget {
+    position: relative;
+    overflow: hidden;
+}
+
+.file-widget input[type="file"] {
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    -moz-opacity: 0;
+    border: none;
+    background: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    float: right;
+    cursor: default;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- ELEMENTS --- */
+.efm-elements {
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+}
+
+.efm-element {
+    background: #f5f5f5;
+    box-shadow: 0 1px 3px #ccc;
+    float: left;
+    height: 120px;
+    margin: 0 15px 15px 0;
+    position: relative;
+    width: 120px;
+}
+
+.efm-element:hover {
+    cursor: pointer;
+}
+
+.efm-element:hover .efm-element-name {
+    box-shadow: 0 1px 3px #ccc;
+    bottom: 30px;
+    height: auto;
+    max-height: 90px;
+    white-space: normal;
+}
+
+.efm-element-name {
+    background: #f5f5f5;
+    bottom: 0;
+    color: #999;
+    display: block;
+    font-size: 11px;
+    left: 0;
+    line-height: 14px;
+    height: 30px;
+    overflow: hidden;
+    padding: 8px;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    width: 120px;
+    
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    transition: box-shadow .2s linear, bottom .2s ease;
+}
+
+.efm-element-visual {
+    height: 90px;
+    width: 120px;
+}
+
+.efm-element-visual img {
+    height: auto;
+    width: 100%;
+}
+
+.efm-element-controls {
+    height: 30px;
+    width: 120px;
+}
+
+.efm-element-controls a {
+    color: #999;
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 30px;
+}
+
+.efm-element-controls a:hover {
+    color: #000;
+    text-decoration: none;
+}

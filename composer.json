@@ -1,0 +1,40 @@
+{
+    "name" : "ekyna/file-manager-bundle",
+    "description" : "Files management",
+    "type" : "symfony-bundle",
+    "authors" : [{
+            "name" : "Etienne Dauvergne",
+            "homepage" : "http://ekyna.com"
+        }
+    ],
+    "keywords" : [
+        "symfony2",
+        "bundle"
+    ],
+    "homepage" : "https://github.com/ekyna/FileManagerBundle",
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+        "php" : ">=5.4.0",
+        "symfony/framework-bundle" : "~2.3",
+        "friendsofsymfony/jsrouting-bundle": "@stable",
+        "jms/twig-js": "1.0.*@dev",
+        "jms/twig-js-bundle": "dev-master",
+        "jms/serializer-bundle": "0.13.*@dev",
+        "liip/imagine-bundle": "0.*@dev",
+        "malsup/form": "dev-master",
+        "twbs/bootstrap" : "3.1.*"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Ekyna\\Bundle\\FileManagerBundle" : ""
+        }
+    },
+    "target-dir" : "Ekyna/Bundle/FileManagerBundle",
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "0.1.x-dev"
+        }
+    }
+}
