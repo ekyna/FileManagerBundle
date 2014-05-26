@@ -143,7 +143,6 @@
 	    </div>
 	</div>
 
-
     {#% javascripts output='js/filemanager.js' filter='?closure'
 	    'js/jquery.js'
 	    'js/bootstrap.js'
@@ -157,7 +156,7 @@
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %#}
     <script type="text/javascript" src="{{ asset('js/filemanager.js') }}"></script>
-    
+
     <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
     {% javascripts output='js/element.html.twig.js' filter="twig_js" '@EkynaFileManagerBundle/Resources/views/Browse/element.html.twig' %}

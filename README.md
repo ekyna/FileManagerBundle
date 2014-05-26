@@ -11,4 +11,6 @@ TODO
 
 
 TODO:
-Form layout without braincrafted bootstrap bundle.
+- Form layout without braincrafted bootstrap bundle.
+- Remove browser configuration property.
+- Check permissions on file types / actions.
