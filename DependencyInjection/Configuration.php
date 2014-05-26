@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode('output_dir')->defaultValue('')->end()
                 ->arrayNode('systems')
                     ->useAttributeAsKey('name')
                     ->prototype('array')

@@ -6,12 +6,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>File Manager</title>
-	{% stylesheets output='css/filemanager.css' filter='cssrewrite, ?yui_css'
-		'css/bootstrap.css'
+	{#% stylesheets output='css/filemanager.css' filter='cssrewrite, ?yui_css'
+		'%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.min.css'
 		'@EkynaFileManagerBundle/Resources/public/css/browser.css'
 	%}
 	<link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-	{%- endstylesheets %}
+	{%- endstylesheets %#}
+	<link href="{{ asset('css/filemanager.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div class="efm-browser" data-system="{{ browser.system.name }}" data-config='{{ browser.configuration|serialize('json') }}'>
@@ -143,7 +144,7 @@
 	</div>
 
 
-    {% javascripts output='js/filemanager.js' filter='?closure'
+    {#% javascripts output='js/filemanager.js' filter='?closure'
 	    'js/jquery.js'
 	    'js/bootstrap.js'
 	    'bundles/fosjsrouting/js/router.js'
@@ -154,9 +155,10 @@
 	    '@EkynaFileManagerBundle/Resources/public/js/browser.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-
-    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    {% endjavascripts %#}
+    <script type="text/javascript" src="{{ asset('js/filemanager.js') }}"></script>
+    
+    <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
     {% javascripts output='js/element.html.twig.js' filter="twig_js" '@EkynaFileManagerBundle/Resources/views/Browse/element.html.twig' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>

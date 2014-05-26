@@ -51,17 +51,17 @@ class EkynaFileManagerExtension extends Extension implements PrependExtensionInt
     /**
      * @param ContainerBuilder $container
      * @param array            $config
-     *
-     * @return void
      */
     protected function configureAsseticBundle(ContainerBuilder $container, array $config)
     {
         foreach (array_keys($container->getExtensions()) as $name) {
             if ($name == 'assetic') {
+                $asseticConfig = new AsseticConfiguration;
                 $container->prependExtensionConfig(
                     $name,
                     array(
                         'bundles' => array('EkynaFileManagerBundle'),
+                        'assets' => $asseticConfig->build($config),
                     )
                 );
         	    break;
