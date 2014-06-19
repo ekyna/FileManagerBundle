@@ -22,25 +22,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class BrowseController extends Controller
 {
-    public function testAction()
-    {
-        /*$dir = realpath($this->get('kernel')->getRootDir().'/../src/Ekyna/Bundle/FileManagerBundle/Resources/public/img');
-
-        $output = '';
-        
-        $finder = new Finder();
-        $fs = new Filesystem();
-        
-        foreach($finder->in($dir)->files() as $file) {
-            if (preg_match('#glyphicons_filetypes_([0-9]+)_([0-9a-z_]+)@2x.png#', $file->getFilename(), $matches)) {
-                $extension = str_replace('e_', '', $matches[2]);
-                $fs->rename($file->getRealPath(), dirname($file->getRealPath()) . '/' . $extension . '.png');
-            } 
-        }
-        
-        return new Response($output);*/
-    }
-
     public function indexAction(Request $request)
     {
         $browser = $this->getBrowser($request);

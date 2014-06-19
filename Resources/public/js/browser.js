@@ -294,8 +294,7 @@
     	var browser = this;
     	browser.busy();
     	config = $.extend(browser.config, config);
-    	$.ajax(
-    		url, {
+    	$.ajax(url, {
     		data: config,
     		dataType: 'json',
     		type: 'GET'

@@ -1,9 +1,3 @@
-ekyna_filemanager_test:
-    path: /test
-    defaults: { _controller: "EkynaFileManagerBundle:Browse:test" }
-    requirements:
-        _method: GET
-
 ekyna_filemanager_index:
     path: /{system}
     defaults: { _controller: "EkynaFileManagerBundle:Browse:index" }

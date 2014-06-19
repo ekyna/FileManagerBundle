@@ -103,10 +103,6 @@ class Browser
      */
     public function setSystem(System $system)
     {
-        if (!$this->filesystem->exists($system->getRootPath())) {
-            throw new RuntimeException(sprintf('Root directory of system "%s" does not exists.', $system->getName()));
-        }
-
         $this->system = $system;
 
         return $this;

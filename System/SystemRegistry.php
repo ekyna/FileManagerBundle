@@ -5,6 +5,8 @@ namespace Ekyna\Bundle\FileManagerBundle\System;
 use Symfony\Component\HttpKernel\Kernel;
 use Ekyna\Bundle\FileManagerBundle\Browser\Browser;
 use Ekyna\Bundle\FileManagerBundle\Generator\ThumbGenerator;
+use Symfony\Component\Filesystem\Filesystem;
+use Ekyna\Bundle\FileManagerBundle\Util\Path;
 
 /**
  * SystemRegistry.
@@ -14,12 +16,12 @@ use Ekyna\Bundle\FileManagerBundle\Generator\ThumbGenerator;
 class SystemRegistry
 {
     /**
-     * @var ThumbGenerator
+     * @var Kernel
      */
     private $kernel;
 
     /**
-     * @var Kernel
+     * @var ThumbGenerator
      */
     private $generator;
 
@@ -48,10 +50,17 @@ class SystemRegistry
      */
     public function createAndRegister($name, array $options)
     {
-        if (substr($options['root_path'], 0, 1) === '/') {
-            $rootPath = rtrim($options['root_path'], '/'); // OS absolute path
+        $fs = new Filesystem();
+        $rootPath = rtrim($options['root_path'], '/');
+        if (Path::isAbsolute($rootPath)) {
+            if (false === strpos($this->kernel->getRootDir(), $rootPath)) {
+                throw new \InvalidArgumentException('System root directory is not under application root directory.');
+            }
         } else {
-            $rootPath = realpath($this->kernel->getRootDir() . '/' . trim($options['root_path'], '/')); // Application relative path
+            $rootPath = Path::normalize($this->kernel->getRootDir() . '/' . $options['root_path']);
+        }
+        if (!$fs->exists($rootPath)) {
+            $fs->mkdir($rootPath);
         }
 
         $webRootPath = null;
