@@ -17,14 +17,14 @@
     ],
     "require" : {
         "php" : ">=5.4.0",
-        "symfony/framework-bundle" : "~2.3",
-        "friendsofsymfony/jsrouting-bundle": "@stable",
-        "jms/twig-js": "1.0.*@dev",
-        "jms/twig-js-bundle": "dev-master",
-        "jms/serializer-bundle": "0.13.*@dev",
-        "liip/imagine-bundle": "0.*@dev",
-        "malsup/form": "dev-master",
-        "components/bootstrap" : ">=3.1"
+        "symfony/symfony" : "~2.3",
+        "friendsofsymfony/jsrouting-bundle": "1.5.*",
+        "jms/twig-js": "1.0.*",
+        "jms/twig-js-bundle": "1.0.*",
+        "jms/serializer-bundle": "0.13.*",
+        "liip/imagine-bundle": "0.*",
+        "malsup/form": "3.*",
+        "twbs/bootstrap" : "3.2.*"
     },
     "autoload" : {
         "psr-0" : {

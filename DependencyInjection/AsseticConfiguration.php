@@ -13,7 +13,6 @@ class AsseticConfiguration
      * Builds the assetic configuration.
      *
      * @param array $config
-     * @param string $root_dir
      *
      * @return array
      */
@@ -34,14 +33,13 @@ class AsseticConfiguration
 
     /**
      * @param array $config
-     * @param string $root_dir
      *
      * @return array
      */
     protected function buildCss(array $config)
     {
         $inputs = array(
-            '%kernel.root_dir%/../vendor/components/bootstrap/css/bootstrap.min.css',
+            '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.min.css',
             'bundles/ekynafilemanager/css/browser.css',
         );
 
@@ -55,7 +53,6 @@ class AsseticConfiguration
 
     /**
      * @param array $config
-     * @param string $root_dir
      *
      * @return array
      */
@@ -63,7 +60,7 @@ class AsseticConfiguration
     {        
         $inputs = array(
             '%kernel.root_dir%/../vendor/components/jquery/jquery.min.js',
-    	    '%kernel.root_dir%/../vendor/components/bootstrap/js/bootstrap.min.js',
+    	    '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.min.js',
     	    '%kernel.root_dir%/../vendor/jms/twig-js/twig.js',
             '%kernel.root_dir%/../vendor/malsup/form/jquery.form.js',
     	    'bundles/fosjsrouting/js/router.js',
