@@ -40,7 +40,7 @@ class AsseticConfiguration
     {
         $inputs = array(
             '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.min.css',
-            'bundles/ekynafilemanager/css/browser.css',
+            '@EkynaFileManagerBundle/Resources/asset/css/browser.css',
         );
 
         return array(
@@ -64,14 +64,14 @@ class AsseticConfiguration
     	    '%kernel.root_dir%/../vendor/jms/twig-js/twig.js',
             '%kernel.root_dir%/../vendor/malsup/form/jquery.form.js',
     	    'bundles/fosjsrouting/js/router.js',
-    	    'bundles/ekynafilemanager/js/string.prototypes.js',
-    	    'bundles/ekynafilemanager/js/forms.js',
-    	    'bundles/ekynafilemanager/js/browser.js',
+    	    '@EkynaFileManagerBundle/Resources/asset/js/string.prototypes.js',
+    	    '@EkynaFileManagerBundle/Resources/asset/js/forms.js',
+    	    '@EkynaFileManagerBundle/Resources/asset/js/browser.js',
         );
 
         return array(
             'inputs'  => $inputs,
-            'filters' => array('closure'),
+            'filters' => array('yui_js'),
             'output'  => $config['output_dir'].'js/filemanager.js',
             'debug'   => false,
         );
