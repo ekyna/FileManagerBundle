@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <container
-    xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services
-                        http://symfony.com/schema/dic/services/services-1.0.xsd">
+        xmlns="http://symfony.com/schema/dic/services"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/dic/services
+                            http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
         <parameter key="ekyna_file_manager.thumb_generator.class">Ekyna\Bundle\FileManagerBundle\Generator\ThumbGenerator</parameter>
-        <parameter key="ekyna_file_manager.thumbs_directory">efm-thumbs</parameter>
-
         <parameter key="ekyna_file_manager.registry.class">Ekyna\Bundle\FileManagerBundle\System\SystemRegistry</parameter>
     </parameters>
 

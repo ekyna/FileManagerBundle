@@ -22,7 +22,7 @@
         "jms/twig-js": "1.0.*",
         "jms/twig-js-bundle": "1.0.*",
         "jms/serializer-bundle": "0.13.*",
-        "liip/imagine-bundle": "dev-master",
+        "liip/imagine-bundle": "1.2.*",
         "malsup/form": "3.*",
         "twbs/bootstrap" : "3.2.*"
     },

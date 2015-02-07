@@ -5,16 +5,16 @@ namespace Ekyna\Bundle\FileManagerBundle\Generator;
 use Ekyna\Bundle\FileManagerBundle\Browser\Element;
 use Ekyna\Bundle\FileManagerBundle\Browser\ElementTypes;
 use Imagine\Image\Box;
-use Imagine\Image\Color;
 use Imagine\Image\ImagineInterface;
 use Imagine\Image\ManipulatorInterface;
+use Imagine\Image\Palette\RGB;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Imagine\Image\Point;
 
 /**
- * ThumbGenerator.
- *
+ * Class ThumbGenerator
+ * @package Ekyna\Bundle\FileManagerBundle\Generator
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class ThumbGenerator
@@ -47,7 +47,9 @@ class ThumbGenerator
     /**
      * Constructor.
      *
-     * @param $thumbDirPath the filemanager thumbs dir.
+     * @param KernelInterface $kernel
+     * @param ImagineInterface $imagine
+     * @param string $thumbDirPath The file manager thumbs dir.
      */
     public function __construct(KernelInterface $kernel, ImagineInterface $imagine, $thumbDirPath)
     {
@@ -136,7 +138,7 @@ class ThumbGenerator
             return $thumbPath;
         }
 
-        $backgroundColor= ElementTypes::getColor($type);
+        $backgroundColor = ElementTypes::getColor($type);
 
         $iconPath = sprintf('%s/%s.png', $this->iconsDirRealPath, $extension);
         if (! file_exists($iconPath)) {
@@ -145,7 +147,8 @@ class ThumbGenerator
 
         $this->checkDir(dirname($destination));
         try {
-            $thumb = $this->imagine->create(new Box(120, 90), new Color($backgroundColor));
+            $palette = new RGB();
+            $thumb = $this->imagine->create(new Box(120, 90), $palette->color($backgroundColor));
 
             $icon = $this->imagine->open($iconPath);
             $iconSize = $icon->getSize();

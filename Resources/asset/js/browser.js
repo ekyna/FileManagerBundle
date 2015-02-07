@@ -225,7 +225,7 @@
 				}
 			});
 
-			var $file = $form.find('.file-widget').fileWidget();
+			var $file = $form.find('.file-widget').filePicker();
 			var $rename = $form.find('.rename-widget');
 			if ($rename.length == 1) {
 				var options = $file.length == 1 ? {file: $file.find('input:file')} : {};

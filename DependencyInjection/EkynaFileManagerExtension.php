@@ -32,6 +32,8 @@ class EkynaFileManagerExtension extends Extension implements PrependExtensionInt
                 $registry->addMethodCall('createAndRegister', array($name, $options));
             }
         }
+
+        $container->setParameter('ekyna_file_manager.thumbs_directory', $config['thumbs_dir']);
     }
 
     /**
@@ -43,7 +45,7 @@ class EkynaFileManagerExtension extends Extension implements PrependExtensionInt
         $configs = $container->getExtensionConfig($this->getAlias());
         $config = $this->processConfiguration(new Configuration(), $configs);
 
-        if (true === isset($bundles['AsseticBundle'])) {
+        if (array_key_exists('AsseticBundle', $bundles)) {
             $this->configureAsseticBundle($container, $config);
         }
     }
@@ -54,18 +56,10 @@ class EkynaFileManagerExtension extends Extension implements PrependExtensionInt
      */
     protected function configureAsseticBundle(ContainerBuilder $container, array $config)
     {
-        foreach (array_keys($container->getExtensions()) as $name) {
-            if ($name == 'assetic') {
-                $asseticConfig = new AsseticConfiguration;
-                $container->prependExtensionConfig(
-                    $name,
-                    array(
-                        'bundles' => array('EkynaFileManagerBundle'),
-                        'assets' => $asseticConfig->build($config),
-                    )
-                );
-        	    break;
-            }
-        }
+        $asseticConfig = new AsseticConfiguration;
+        $container->prependExtensionConfig('assetic', array(
+            'bundles' => array('EkynaFileManagerBundle'),
+            'assets' => $asseticConfig->build($config),
+        ));
     }
 }

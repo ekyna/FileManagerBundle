@@ -3,7 +3,7 @@
 	/**
 	 * File widget
 	 */
-	$.fn.fileWidget = function(params) {
+	$.fn.filePicker = function(params) {
 		
 		params = $.extend({}, params);
 		

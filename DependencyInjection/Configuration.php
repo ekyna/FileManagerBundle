@@ -23,7 +23,13 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('output_dir')->defaultValue('')->end()
+                ->scalarNode('thumbs_dir')->defaultValue('media/thumbs')->end()
                 ->arrayNode('systems')
+                    ->defaultValue(array(
+                        'default' => array(
+                            'root_path' =>  '../web/media/files',
+                        ),
+                    ))
                     ->useAttributeAsKey('name')
                     ->prototype('array')
                         ->children()
