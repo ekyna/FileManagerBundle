@@ -3,9 +3,10 @@
 namespace Ekyna\Bundle\FileManagerBundle\Util;
 
 /**
- * Path
- *
+ * Class Path
+ * @package Ekyna\Bundle\FileManagerBundle\Util
  * @author Antoine Hérault <antoine.herault@gmail.com>
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class Path
 {

@@ -3,8 +3,8 @@
 namespace Ekyna\Bundle\FileManagerBundle\Browser;
 
 /**
- * Element.
- *
+ * Class Element
+ * @package Ekyna\Bundle\FileManagerBundle\Browser
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class Element

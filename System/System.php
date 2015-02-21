@@ -3,8 +3,8 @@
 namespace Ekyna\Bundle\FileManagerBundle\System;
 
 /**
- * System.
- *
+ * Class System
+ * @package Ekyna\Bundle\FileManagerBundle\System
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class System

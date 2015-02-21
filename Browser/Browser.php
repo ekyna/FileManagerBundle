@@ -2,6 +2,7 @@
 
 namespace Ekyna\Bundle\FileManagerBundle\Browser;
 
+use Behat\Transliterator\Transliterator;
 use Ekyna\Bundle\FileManagerBundle\Generator\ThumbGenerator;
 use Ekyna\Bundle\FileManagerBundle\System\System;
 use Symfony\Component\Finder\Finder;
@@ -13,8 +14,8 @@ use Ekyna\Bundle\FileManagerBundle\Exception\RuntimeException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Browser.
- *
+ * Class Browser
+ * @package Ekyna\Bundle\FileManagerBundle\Browser
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class Browser
@@ -121,7 +122,7 @@ class Browser
     /**
      * Sets the disk relative path of the current working directory.
      * 
-     * @return string
+     * @param string $path
      * 
      * @return Browser
      */
@@ -133,16 +134,6 @@ class Browser
         }
 
         return $this;
-    }
-
-    /**
-     * Returns the disk relative path of the current working directory.
-     * 
-     * @return string
-     */
-    private function getCurrentPath()
-    {
-        return $this->currentPath;
     }
 
     /**
@@ -254,9 +245,13 @@ class Browser
      * Finds an element matching the given name.
      * 
      * @param string $name
+     * @param bool $throwException
+     * @return Element|null
      */
     private function findElement($name, $throwException = false)
     {
+        $name = Transliterator::urlize($name);
+
         $finder = new Finder();
         $finder
             ->in($this->getCurrentRealPath())
@@ -318,7 +313,8 @@ class Browser
      */
     public function mkdir($name)
     {
-        $newDirectoryPath = $this->getCurrentRealPath().'/'.$name;
+
+        $newDirectoryPath = $this->getCurrentRealPath().'/'.Transliterator::urlize($name);
 
         if ($this->filesystem->exists($newDirectoryPath)) {
             throw new RuntimeException(sprintf('"%s" folder allready exists.', $name));
@@ -335,19 +331,18 @@ class Browser
      * Move an uploaded file.
      * 
      * @param UploadedFile $file
+     * @param string       $name
      */
     public function upload(UploadedFile $file, $name = null)
     {
-        if (0 == strlen($name)) {
+        if (0 === strlen($name)) {
             $name = $file->getClientOriginalName();
         }
 
-        // TODO: normalize name / check extension
-
-        $filename = pathinfo($name, PATHINFO_FILENAME);
+        $filename = Transliterator::urlize(pathinfo($name, PATHINFO_FILENAME));
         $extension = pathinfo($name, PATHINFO_EXTENSION);
 
-        if (0 == strlen($filename) || 0 == strlen($extension)) {
+        if (0 === strlen($filename) || 0 === strlen($extension)) {
             throw new RuntimeException(sprintf('Bad formated file name "%s".', $name));
         }
 
@@ -380,7 +375,8 @@ class Browser
             throw new RuntimeException('Current element is not defined.');
         }
 
-        // TODO: normalize name / check extension
+        $newName = Transliterator::urlize($newName);
+        // TODO Check same extension
         
         if ($this->filesystem->exists($this->getCurrentRealPath().'/'.$newName)) {
             throw new RuntimeException('Un autre fichier portant le même nom éxiste déjà.');

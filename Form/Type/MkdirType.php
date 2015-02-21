@@ -7,8 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * MkdirType.
- *
+ * Class MkdirType
+ * @package Ekyna\Bundle\FileManagerBundle\Form\Type
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class MkdirType extends AbstractType

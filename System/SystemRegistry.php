@@ -9,8 +9,8 @@ use Symfony\Component\Filesystem\Filesystem;
 use Ekyna\Bundle\FileManagerBundle\Util\Path;
 
 /**
- * SystemRegistry.
- *
+ * Class SystemRegistry
+ * @package Ekyna\Bundle\FileManagerBundle\System
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class SystemRegistry
@@ -30,9 +30,12 @@ class SystemRegistry
      */
     private $systems;
 
+
     /**
      * Constructor.
-     * 
+     *
+     * @param Kernel $kernel
+     * @param ThumbGenerator $generator
      * @param array $systems
      */
     public function __construct(Kernel $kernel, ThumbGenerator $generator, array $systems)
@@ -95,7 +98,7 @@ class SystemRegistry
     }
 
     /**
-     * Returns whether a system definistion is registered or not for the given name.
+     * Returns whether a system definition is registered or not for the given name.
      * 
      * @param string $name
      * 
@@ -126,7 +129,7 @@ class SystemRegistry
      * 
      * @param string $name
      * 
-     * @return \Ekyna\Bundle\FileManagerBundle\Browser\Browser
+     * @return Browser
      */
     public function getBrowser($name)
     {

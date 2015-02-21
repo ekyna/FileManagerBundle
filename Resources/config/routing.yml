@@ -31,7 +31,7 @@ ekyna_filemanager_show:
     requirements:
         _method: GET
         system: "[a-z-]+"
-        file: "[0-9a-z-_\(\)\.]+"
+        file: "[0-9a-z-\(\)\.]+"
     options:
         expose: true
 
@@ -41,7 +41,7 @@ ekyna_filemanager_download:
     requirements:
         _method: GET
         system: "[a-z-]+"
-        file: "[0-9a-z-_\(\)\.]+"
+        file: "[0-9a-z-\(\)\.]+"
     options:
         expose: true
 
@@ -51,7 +51,7 @@ ekyna_filemanager_rename:
     requirements:
         _method: GET|POST
         system: "[a-z-]+"
-        file: "[0-9a-z-_\(\)\.]+"
+        file: "[0-9a-z-\(\)\.]+"
     options:
         expose: true
 
@@ -61,6 +61,6 @@ ekyna_filemanager_remove:
     requirements:
         _method: GET|POST
         system: "[a-z-]+"
-        file: "[0-9a-z-_\(\)\.]+"
+        file: "[0-9a-z-\(\)\.]+"
     options:
         expose: true

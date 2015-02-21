@@ -24,6 +24,7 @@
         "jms/serializer-bundle": "0.13.*",
         "liip/imagine-bundle": "1.2.*",
         "malsup/form": "3.*",
+        "behat/transliterator": "~1.0",
         "twbs/bootstrap" : "3.2.*"
     },
     "autoload" : {

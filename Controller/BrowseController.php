@@ -16,8 +16,8 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * BrowseController.
- *
+ * Class BrowseController
+ * @package Ekyna\Bundle\FileManagerBundle\Controller
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class BrowseController extends Controller

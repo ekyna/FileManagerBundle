@@ -9,8 +9,8 @@ use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
 /**
- * EkynaFileManagerExtension.
- *
+ * Class EkynaFileManagerExtension
+ * @package Ekyna\Bundle\FileManagerBundle\DependencyInjection
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class EkynaFileManagerExtension extends Extension implements PrependExtensionInterface

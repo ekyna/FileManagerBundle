@@ -10,6 +10,7 @@ use Imagine\Image\ManipulatorInterface;
 use Imagine\Image\Palette\RGB;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Imagine\Exception\RuntimeException as ImagineException;
 use Imagine\Image\Point;
 
 /**
@@ -64,7 +65,8 @@ class ThumbGenerator
 
     /**
      * Generates a thumb for the given element.
-     * 
+     *
+     * @param Element $element
      * @return string the thumb path
      */
     public function generate(Element $element)
@@ -122,13 +124,20 @@ class ThumbGenerator
                 ->save($destination)
             ;
             return $thumbPath;
-        } catch (\Imagine\Exception\RuntimeException $e) {
+        } catch (ImagineException $e) {
             // Image thumb generation failed
         }
 
         return null;
     }
 
+    /**
+     * Generates thumb for non-image elements.
+     *
+     * @param $extension
+     * @param $type
+     * @return null|string
+     */
     private function generateExtensionThumb($extension, $type)
     {
         $thumbPath   = sprintf('%s/extension_icon_%s.jpg', $this->thumbDirPath, $extension);
@@ -158,13 +167,18 @@ class ThumbGenerator
             $thumb->save($destination);
 
             return $thumbPath;
-        } catch (\Imagine\Exception\RuntimeException $e) {
+        } catch (ImagineException $e) {
             // Image thumb generation failed
         }
 
         return null;
     }
 
+    /**
+     * Creates the directory if it does not exists.
+     *
+     * @param $dir
+     */
     private function checkDir($dir)
     {
         if (! $this->fs->exists($dir)) {
