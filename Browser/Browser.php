@@ -250,13 +250,21 @@ class Browser
      */
     private function findElement($name, $throwException = false)
     {
-        $name = Transliterator::urlize($name);
+        //$name = Transliterator::urlize($name);
+        $filename = Transliterator::urlize(pathinfo($name, PATHINFO_FILENAME));
+        $extension = pathinfo($name, PATHINFO_EXTENSION);
+
+        if (0 === strlen($filename) || 0 === strlen($extension)) {
+            throw new RuntimeException(sprintf('Bad formatted file name "%s".', $name));
+        }
+
+        $target = sprintf('%s.%s', $filename, $extension);
 
         $finder = new Finder();
         $finder
             ->in($this->getCurrentRealPath())
             ->depth(0)
-            ->name(addcslashes(sprintf('/^%s$/', $name), '().'))
+            ->name(addcslashes(sprintf('/^%s$/', $target), '().'))
         ;
 
         $result = current(iterator_to_array($finder->getIterator()));
@@ -343,7 +351,7 @@ class Browser
         $extension = pathinfo($name, PATHINFO_EXTENSION);
 
         if (0 === strlen($filename) || 0 === strlen($extension)) {
-            throw new RuntimeException(sprintf('Bad formated file name "%s".', $name));
+            throw new RuntimeException(sprintf('Bad formatted file name "%s".', $name));
         }
 
         $target = sprintf('%s.%s', $filename, $extension);
@@ -375,17 +383,24 @@ class Browser
             throw new RuntimeException('Current element is not defined.');
         }
 
-        $newName = Transliterator::urlize($newName);
+        $filename = Transliterator::urlize(pathinfo($newName, PATHINFO_FILENAME));
+        $extension = pathinfo($newName, PATHINFO_EXTENSION);
+
+        if (0 === strlen($filename) || 0 === strlen($extension)) {
+            throw new RuntimeException(sprintf('Bad formatted file name "%s".', $newName));
+        }
+
+        $target = sprintf('%s.%s', $filename, $extension);
         // TODO Check same extension
         
-        if ($this->filesystem->exists($this->getCurrentRealPath().'/'.$newName)) {
+        if ($this->filesystem->exists($this->getCurrentRealPath().'/'.$target)) {
             throw new RuntimeException('Un autre fichier portant le même nom éxiste déjà.');
         }
 
         $this->generator->remove($this->currentElement);
         
         try {
-            $this->filesystem->rename($this->currentElement->getRealPath(), $this->getCurrentRealPath().'/'.$newName);
+            $this->filesystem->rename($this->currentElement->getRealPath(), $this->getCurrentRealPath().'/'.$target);
         } catch(\Exception $e) {
             throw new RuntimeException(sprintf(
                 'Failed to rename "%s" %s.',

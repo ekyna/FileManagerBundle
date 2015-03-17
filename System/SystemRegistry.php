@@ -53,6 +53,13 @@ class SystemRegistry
      */
     public function createAndRegister($name, array $options)
     {
+        $options = array_merge(array(
+            'upload_roles'    => null,
+            'allowed_types'   => null,
+            'forbidden_types' => null,
+            'delete_roles'    => null,
+        ), $options);
+
         $fs = new Filesystem();
         $rootPath = rtrim($options['root_path'], '/');
         if (Path::isAbsolute($rootPath)) {
