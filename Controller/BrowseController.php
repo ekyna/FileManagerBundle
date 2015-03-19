@@ -32,15 +32,12 @@ class BrowseController extends Controller
             return $this->createJsonResponse(array(
                 'elements' => $browser->getElements(),
                 'breadcrumb' => $browser->getBreadcrumb(),
-            ));
+            ))->setPrivate();
         }
 
-        return $this->render(
-            'EkynaFileManagerBundle:Browse:index.html.twig',
-            array(
-                'browser' => $browser,
-            )
-        );
+        return $this->render('EkynaFileManagerBundle:Browse:index.html.twig', array(
+            'browser' => $browser,
+        ))->setPrivate();
     }
 
     public function mkdirAction(Request $request)
@@ -130,10 +127,9 @@ class BrowseController extends Controller
             }
         }
 
-        $datas['form'] = $this->renderView(
-            'EkynaFileManagerBundle:Browse:form.html.twig',
-            array('form' => $form->createView())
-        );
+        $datas['form'] = $this->renderView('EkynaFileManagerBundle:Browse:form.html.twig', array(
+            'form' => $form->createView()
+        ));
 
         return $this->createJsonResponse($datas);
     }
@@ -151,7 +147,9 @@ class BrowseController extends Controller
             return new NotFoundHttpException();
         }
 
-        return new BinaryFileResponse($file->getRealPath());
+        $response = new BinaryFileResponse($file->getRealPath());
+
+        return $response->setPrivate();
     }
 
     public function downloadAction(Request $request)
@@ -175,7 +173,7 @@ class BrowseController extends Controller
         );
         $response->headers->set('Content-Disposition', $d);
 
-        return $response;
+        return $response->setPrivate();
     }
 
     public function renameAction(Request $request)
@@ -320,6 +318,8 @@ class BrowseController extends Controller
      */
     private function createJsonResponse(array $datas)
     {
-        return new Response($this->get('jms_serializer')->serialize($datas, 'json'));
+        $response = new Response($this->get('jms_serializer')->serialize($datas, 'json'));
+
+        return $response->setPrivate();
     }
 }
