@@ -359,7 +359,7 @@ class Browser
             $count = 1;
             do {
                 $count++;
-                $target = sprintf('%s-(%d).%s', $filename, $count, $extension);
+                $target = sprintf('%s-%d.%s', $filename, $count, $extension);
             } while ($this->filesystem->exists($this->getCurrentRealPath().'/'.$target));
         }
 
@@ -373,7 +373,7 @@ class Browser
     /**
      * Renames the current element.
      *
-     * @param string $newName : the directory name
+     * @param string $newName
      *
      * @throws RuntimeException
      */
