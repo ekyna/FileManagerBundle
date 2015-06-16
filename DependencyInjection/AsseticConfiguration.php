@@ -39,7 +39,7 @@ class AsseticConfiguration
     protected function buildCss(array $config)
     {
         $inputs = array(
-            '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.min.css',
+            '%kernel.root_dir%/../web/assets/bootstrap/css/bootstrap.min.css',
             '@EkynaFileManagerBundle/Resources/asset/css/browser.css',
         );
 
@@ -59,8 +59,8 @@ class AsseticConfiguration
     protected function buildJs(array $config)
     {        
         $inputs = array(
-            '%kernel.root_dir%/../vendor/components/jquery/jquery.min.js',
-    	    '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.min.js',
+            '%kernel.root_dir%/../web/assets/jquery/jquery.min.js',
+    	    '%kernel.root_dir%/../web/assets/bootstrap/js/bootstrap.min.js',
     	    '%kernel.root_dir%/../vendor/jms/twig-js/twig.js',
             '%kernel.root_dir%/../vendor/malsup/form/jquery.form.js',
     	    'bundles/fosjsrouting/js/router.js',

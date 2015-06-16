@@ -1,4 +1,4 @@
-(function(document, $) {
+(function($, router) {
 
 	// http://james.padolsey.com/javascript/sorting-elements-with-jquery/
 	jQuery.fn.sortElements = (function(){
@@ -141,7 +141,7 @@
     		e.preventDefault();
     		e.stopPropagation();
     		var $element = $(e.currentTarget).parents('.efm-element');
-    		var url = Routing.generate(
+    		var url = router.generate(
 				'ekyna_filemanager_show', 
 				$.extend(e.data.browser.config, {'system': e.data.browser.system, 'file': $element.data('filename')})
     		);
@@ -153,7 +153,7 @@
     		e.preventDefault();
     		e.stopPropagation();
     		var $element = $(e.currentTarget).parents('.efm-element');
-    		var url = Routing.generate(
+    		var url = router.generate(
 				'ekyna_filemanager_download', 
 				$.extend(e.data.browser.config, {'system': e.data.browser.system, 'file': $element.data('filename')})
     		);
@@ -308,23 +308,23 @@
     };
     
     Browser.prototype.mkdir = function () {
-    	this.request(Routing.generate('ekyna_filemanager_mkdir', {'system': this.system}));
+    	this.request(router.generate('ekyna_filemanager_mkdir', {'system': this.system}));
     };
 
     Browser.prototype.upload = function () {
-    	this.request(Routing.generate('ekyna_filemanager_upload', {'system': this.system}));
+    	this.request(router.generate('ekyna_filemanager_upload', {'system': this.system}));
     };
 
     Browser.prototype.rename = function ($element) {
-    	this.request(Routing.generate('ekyna_filemanager_rename', {'system': this.system, 'file': $element.data('filename')}));
+    	this.request(router.generate('ekyna_filemanager_rename', {'system': this.system, 'file': $element.data('filename')}));
     };
 
     Browser.prototype.remove = function ($element) {
-    	this.request(Routing.generate('ekyna_filemanager_remove', {'system': this.system, 'file': $element.data('filename')}));
+    	this.request(router.generate('ekyna_filemanager_remove', {'system': this.system, 'file': $element.data('filename')}));
     };
 
     Browser.prototype.browse = function (path) {
-    	this.request(Routing.generate('ekyna_filemanager_index', {'system': this.system}), {path: path});
+    	this.request(router.generate('ekyna_filemanager_index', {'system': this.system}), {path: path});
     };
 
     Browser.prototype.filter = function() {
@@ -372,10 +372,10 @@
     	});
     };
 
-	$(document).ready(function() {
-		
+	$(document).on('fos_js_routing_loaded', function() {
+
 		var browser = new Browser($('.efm-browser'));
 
 	});
 	
-})(window.document, jQuery);
+})(jQuery, Routing);
