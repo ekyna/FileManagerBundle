@@ -29,11 +29,10 @@
         "components/bootstrap": "~3.3"
     },
     "autoload" : {
-        "psr-0" : {
-            "Ekyna\\Bundle\\FileManagerBundle" : ""
+        "psr-4" : {
+            "Ekyna\\Bundle\\FileManagerBundle\\" : ""
         }
     },
-    "target-dir" : "Ekyna/Bundle/FileManagerBundle",
     "extra" : {
         "branch-alias" : {
             "dev-master" : "0.3.x-dev"
